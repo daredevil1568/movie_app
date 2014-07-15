@@ -9,12 +9,11 @@
      Name:  <%= link_to movie.name, movie %>
 
       Director: <%= movie.director %>
-      Writers: <%=movie.writers %>
-      <br/>
-      Stars: <%= movie.stars %>
-      <br/>
+       Review: <%= movie.reviews.count %>
+      <% if signed_in? %>
      <%= link_to " Add Review", movie %>
     </li>
+    <% end %>
   <% end %>
   <%= will_paginate @movies %>
 </ul>

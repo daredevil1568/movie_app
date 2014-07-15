@@ -8,6 +8,7 @@
     <li>
       <%= gravatar1_for movie, size: 52 %>
       <%= link_to movie.name, movie %>
+      Review: <%= movie.reviews.count %>
     </li>
   <% end %>
 </ul>

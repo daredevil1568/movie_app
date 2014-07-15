@@ -20,7 +20,7 @@
   <div class="span6 offset3">
     <%= form_for(@new_review) do |f| %>
 	  <div class="field">
-	    <%= f.text_area :comment, placeholder: "Compose new micropost..." %>
+	    <%= f.text_area :comment, placeholder: "Write Review..." %>
 	    <%= f.hidden_field :movie_id %>
 	  </div>
     <%= f.submit "Post", class: "btn btn-large btn-primary" %>
@@ -31,6 +31,7 @@
     <% if @movie.reviews.any? %>
       <h3>Reviews(<%= @movie.reviews.count %>)</h3>
       <ol class="microposts">
+      
         <%= render @reviews %>
       </ol>
       <%= will_paginate @reviews %>

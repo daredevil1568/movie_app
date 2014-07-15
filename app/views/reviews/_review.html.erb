@@ -1,9 +1,13 @@
 <li>
+<% id=review.user_id %>
+<% user=User.find_by_id(id) %>
+
+<span class="content"><%= link_to user.name, user %></span>
   <span class="content"><%= review.comment %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(review.created_at) %> ago.
   </span>
- 
+
 
  
 </li>

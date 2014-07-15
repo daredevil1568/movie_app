@@ -1,5 +1,9 @@
 <li>
-  <span class="content"><%= review.comment %></span>
+<% id= review.movie_id %>
+<% @movie= Movie.find_by_id(id) %>
+
+<span class="content">Movie: <%=  link_to @movie.name , @movie %></span>
+  <span class="content">Review: <%= review.comment %></span>
   <span class="timestamp">
     Posted <%= time_ago_in_words(review.created_at) %> ago.
   </span>

@@ -21,7 +21,6 @@ class ReviewsController < ApplicationController
   	@review = Review.find(params[:id])
   	user=@review.user;
   	@review.destroy
-  	debugger
   	redirect_to user_path(user)
   end
 end
