@@ -1,0 +1,20 @@
+
+
+<%= will_paginate @movies %>
+
+<ul class="users">
+  <% @movies.each do |movie| %>
+    <li>
+      <%= gravatar1_for movie, size: 52 %>
+     Name:  <%= link_to movie.name, movie %>
+
+      Director: <%= movie.director %>
+      Writers: <%=movie.writers %>
+      <br/>
+      Stars: <%= movie.stars %>
+      <br/>
+     <%= link_to " Add Review", movie %>
+    </li>
+  <% end %>
+  <%= will_paginate @movies %>
+</ul>

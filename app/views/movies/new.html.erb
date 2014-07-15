@@ -1,0 +1,24 @@
+<% provide(:title, "Add Movie") %>
+<h1>Add New Movie</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@movie) do |f| %>
+     
+      <%= render 'shared/movieerror' %>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      <%= f.label :director %>
+      <%= f.text_field :director %>
+      <%= f.label :writers %>
+      <%= f.text_field :writers %>
+      <%= f.label :stars %>
+      <%= f.text_field :stars %>
+      <%= f.label :description %>
+      <%= f.text_field :content %>
+
+      <%= f.submit "Add For Review", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+  </div>
+</div>

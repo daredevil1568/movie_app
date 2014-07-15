@@ -1,0 +1,15 @@
+<% provide(:title, 'All Movies') %>
+<h1>All Movies</h1>
+
+<%= will_paginate %>
+
+<ul class="users">
+  <% @movies.each do |movie| %>
+    <li>
+      <%= gravatar1_for movie, size: 52 %>
+      <%= link_to movie.name, movie %>
+    </li>
+  <% end %>
+</ul>
+
+<%= will_paginate %>
