@@ -24,4 +24,13 @@ end
  		render 'new'
  	end
  end
+
+
+ def destroy
+    Movie.find(params[:id]).destroy
+    flash[:success] = "Movie destroyed."
+    redirect_to movies_url
+    end
+
+
 end

@@ -1,9 +1,17 @@
-<li>
-  <%= gravatar_for user, size: 52 %>
-  <%= link_to user.name, user %>
-  Reviews Added <%= user.reviews.count %>
+<li class="list-page-item">
+<div class="list">
+<div class="left">
+  <%= image_tag user.photo.url(:small) %>
+  </div>
+  <div class="right">
+  <div class="text"> <strong> Name:</strong>
+  <%= link_to user.name, user %></div>
+ <div class="text"><strong> Reviews Added</strong> <%= user.reviews.count %></div>
   <% if current_user.admin? && !current_user?(user) %>
-   <%= link_to "delete", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
+  <div class="text"> <%= link_to "delete", user, method: :delete,
+                                  data: { confirm: "You sure?" } %></div>
+
   <% end %>
+   </div>
+                                  </div>
 </li>

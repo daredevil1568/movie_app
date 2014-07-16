@@ -2,18 +2,20 @@
 <div class="row">
   <aside class="span4">
     <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %></br>
-        Total Review: <%= @user.reviews.count %>
-      </h1>
+      <div class="image">
+        <%= image_tag @user.photo.url(:small) %>
+        </div>
+        </br>
+       <div class="text"> <strong>Name: <%= link_to @user.name %></strong></div>
+        <div class="text"><strong> Total Review: <%= @user.reviews.count %></strong></div>
+      
     </section>
   </aside>
   <span>
   <div class="span8">
     <% if @user.reviews.any? %>
       <h3>Reviews(<%= @user.reviews.count %>)</h3>
-      <ol class="microposts">
+      <ol class="users">
         <%= render partial: 'shared/user_review', collection: @reviews, :as => :review %>
       </ol>
       <%= will_paginate @reviews %>

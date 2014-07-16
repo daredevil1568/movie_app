@@ -9,7 +9,9 @@
            <% if signed_in? %>
           <li><%= link_to "Add Movie", new_movie_path %></li>
 
-          
+           <% if current_user.admin? %>
+            <li> <%= link_to "Admin", current_user %></li>
+  <% end %>
         
             <li><%= link_to "Users", users_path %></li>
             <li id="fat-menu" class="dropdown">

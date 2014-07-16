@@ -3,17 +3,25 @@
 <%= will_paginate @movies %>
 
 <ul class="users">
-  <% @movies.each do |movie| %>
-    <li>
-      <%= gravatar1_for movie, size: 52 %>
-     Name:  <%= link_to movie.name, movie %>
 
-      Director: <%= movie.director %>
-       Review: <%= movie.reviews.count %>
+  <% @movies.each do |movie| %>
+  
+   <li class="list-group-item">
+   <div class="list">
+     <div class="left" ><%=  image_tag movie.photo.url(:small) %></div>
+     <div class="right">
+    <div class="text"><strong>Name:</strong><%= link_to movie.name, movie %></div>
+
+     <div class="text"> <strong>Director: </strong><%= movie.director %></div>
+      <div class="text"> <strong> Review:</strong> <%= movie.reviews.count %></div>
       <% if signed_in? %>
-     <%= link_to " Add Review", movie %>
-    </li>
+   <div class="text">   <%= link_to " Add Review", movie %></div>
+    
     <% end %>
+    </div>
+    </div>
+    </li>
   <% end %>
-  <%= will_paginate @movies %>
 </ul>
+  <%= will_paginate @movies %>
+
