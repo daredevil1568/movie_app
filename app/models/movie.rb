@@ -1,5 +1,5 @@
 class Movie < ActiveRecord::Base
-  attr_accessible :content, :name,:director ,:writers, :stars , :photo
+  attr_accessible :content, :name,:director ,:writers, :stars , :photo ,:releasedate
 
   
   has_many :reviews, dependent: :destroy

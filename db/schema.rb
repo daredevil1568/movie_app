@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140716132242) do
+ActiveRecord::Schema.define(:version => 20140717085347) do
 
   create_table "ckeditor_assets", :force => true do |t|
     t.string   "data_file_name",                  :null => false
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(:version => 20140716132242) do
   create_table "movies", :force => true do |t|
     t.string   "name"
     t.text     "content",            :limit => 255
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "director"
     t.string   "writers"
     t.text     "stars"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20140716132242) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.date     "releasedate"
   end
 
   create_table "reviews", :force => true do |t|

@@ -1,16 +1,37 @@
-<div >
+<div class="row">
   <h1>Welcome to A2ZFILM</h1>
-
-  <div class="row">
-    
-      <h3>Movies For Review</h3>
-    
-      <%= render 'shared/list' %>
-      
-    </div>
-
-
-
 </div>
-
-
+<div class="row-fluid">
+  <div class="span8 well">
+    
+    <%= render 'shared/list' %>
+  </div>
+  <div class="span4">
+    <div class="well">  
+      <h4>Opening This Week</h4>
+      <ul>
+        <% @movies.each do |movie| %>
+         <% if  movie.releasedate > Date.today.beginning_of_week  %>
+            <li>
+             <div class="text">
+             <%= link_to movie.name, movie %>
+             </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+    <div class="well">
+      <h4> Most Populer Movie </h4>
+      <ul>
+        <% @movies.each do |movie| %>
+          <% if movie.reviews.count>0 %>
+            <li>
+              <%= link_to movie.name, movie %>
+            </li>
+          <%end %>
+        <%end %>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,27 +1,32 @@
-
-
 <%= will_paginate @movies %>
-
-<ul class="users">
-
+<ul class="list-group">
   <% @movies.each do |movie| %>
-  
-   <li class="list-group-item">
-   <div class="list">
-     <div class="left" ><%=  image_tag movie.photo.url(:small) %></div>
-     <div class="right">
-    <div class="text"><strong>Name:</strong><%= link_to movie.name, movie %></div>
+    <li class="list-group-item">
+      <div class="span3">
+        <%=  image_tag movie.photo.url(:small) %>
+      </div>
+      <div class="span7">
+        <div class="large">
+          <strong><%= link_to movie.name, movie %></strong>
+        </div>
+        <div >
+          <strong>Director: </strong><%= movie.director %>
+        </div>
+        <div>
+          <strong> Review:</strong> <%= movie.reviews.count %>
+        </div>
+      </div>
+      <div class="span2">
+        <% if signed_in? %>
+          <%= link_to " Add Review", movie %>
+        <% end %>
 
-     <div class="text"> <strong>Director: </strong><%= movie.director %></div>
-      <div class="text"> <strong> Review:</strong> <%= movie.reviews.count %></div>
-      <% if signed_in? %>
-   <div class="text">   <%= link_to " Add Review", movie %></div>
-    
-    <% end %>
-    </div>
-    </div>
+        <%  signed_in? && if current_user.admin?%>
+          <%= link_to "Delete", movie, method: :delete,data: { confirm: "You sure?" } %>
+        <% end %>
+      </div>
     </li>
   <% end %>
 </ul>
-  <%= will_paginate @movies %>
+<%= will_paginate @movies %>
 

@@ -22,6 +22,11 @@
        <tr>
        <td><strong>Description:</strong></td>
        <td> <%= raw(@movie.content )%></td>
+       </tr>
+
+       <tr>
+       <td><strong>Release Date:</strong></td>
+       <td> <%= @movie.releasedate.strftime("%d-%m-%Y") %></td>
        </tr></table>
 
     </div>

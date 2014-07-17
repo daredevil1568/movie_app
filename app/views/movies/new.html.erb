@@ -17,6 +17,8 @@
       <%= f.cktext_area :content, rows: 10 %>
       <%= f.label :photo, "Add Poster" %>
       <%= f.file_field :photo %>
+      <%= f.label :releasedate,"Release Date" %>
+      <%= f.date_select :releasedate %>
       <br/>
       <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
     <% end %>
