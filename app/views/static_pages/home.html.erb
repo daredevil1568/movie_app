@@ -2,48 +2,55 @@
   <h1>Welcome to A2ZFILM</h1>
 </div>
 <div class="row-fluid">
-  <div class="span8 well">
-    
-    <%= render 'shared/list' %>
-  </div>
-  <div class="span4">
-    <div class="well">  
-      <h4>Opening This Week</h4>
-      <ul>
-        <% @movies.each do |movie| %>
-         <% if  movie.releasedate > Date.today.beginning_of_week &&  movie.releasedate < Date.today.beginning_of_week+7 %>
-            <li>
-             <div class="text">
-             <%= link_to movie.name, movie %>
-             </div>
-            </li>
-          <% end %>
-        <% end %>
-      </ul>
-    </div>
-    <div class="well">
-      <h4> Most Populer Movie </h4>
-      <% u=Hash.new %>
-      <% @movies.each do |movie| %>
-        <% u[movie]=movie.reviews.count %>
-      <% end %>
+  
+    <div class="span8 ">
       
-    
-      <% temp= u.sort_by {|k,v| v}.reverse %>
-      <% Hash[*temp.flatten] %>
-      <ul>
+      <div class="well">
         
-        <% temp.each do |k,v| %>
-        
-          <% if  v >1 %>
-            <li>
-              <%= link_to k.name, k %>
+        <%= render 'shared/list' %>
 
-            </li>
-          <%end %>
-        <%end %>
-      </ul>
-      
+      </div>
+      <%= will_paginate @movies %>
     </div>
-  </div>
+    <div class="span4">
+      <div class="well">  
+        <h4>Opening This Week</h4>
+        <ul>
+          <% @movies.each do |movie| %>
+           <% if  movie.releasedate > Date.today.beginning_of_week &&  movie.releasedate < Date.today.beginning_of_week+7 %>
+              <li>
+               <div class="text">
+               <%= link_to movie.name, movie %>
+               </div>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+      <div class="well">
+        <h4> Most Populer Movie </h4>
+        <% u=Hash.new %>
+        <% @movies.each do |movie| %>
+          <% u[movie]=movie.reviews.count %>
+        <% end %>
+        
+      
+        <% temp= u.sort_by {|k,v| v}.reverse %>
+        <% Hash[*temp.flatten] %>
+        <ul>
+          
+          <% temp.each do |k,v| %>
+          
+            <% if  v >1 %>
+              <li>
+                <%= link_to k.name, k %>
+
+              </li>
+            <%end %>
+          <%end %>
+        </ul>
+        
+      </div>
+    </div>
+ 
 </div>

@@ -1,12 +1,22 @@
-<li>
+<li class="well comments-container" >
 <% id=review.user_id %>
 <% user=User.find_by_id(id) %>
-<div class="content"><strong>User: </strong><%= link_to user.name, user %></div>
-  <div class="content"><strong>Comment: </strong><%= raw(review.comment) %></div>
-  <div class="timestamp"><strong>Created: </strong>
-    Posted <%= time_ago_in_words(review.created_at) %> ago.
-  </div>
-  <%  signed_in? && if current_user.admin?%>
-   <div class="content"> <%= link_to "delete", review_path(review), method: :delete, data: { confirm: "You sure?" }%></div>
-   <% end %>
+<div class="row-fluid">
+	<div class="span9">
+		
+		  <div class="content"><%= raw(review.comment) %></div>
+		  
+		   <div> Posted <%= time_ago_in_words(review.created_at) %> ago.
+		    <%= link_to user.name, user %>
+
+			  </div>
+		 </div>
+		  <div class="span3 ">
+		  	<div class="right">
+			  <%  signed_in? && if current_user.admin?%>
+			    <%= link_to "delete", review_path(review), method: :delete, data: { confirm: "You sure?" }%>
+			   <% end %>
+		   </div>
+	   </div>
+   </div>
  </li>

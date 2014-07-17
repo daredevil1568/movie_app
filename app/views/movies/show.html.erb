@@ -1,9 +1,9 @@
 <% provide(:title, @movie.name) %>
 <div class="row">
-<div class="span4">
+<div class="span2">
 <%= image_tag @movie.photo.url(:small) %>
 </div>
-<div class="span8">
+<div class="span10">
 <table class="table">
  <tr>
  		<td><strong>Name: </strong></td>
@@ -42,7 +42,9 @@
 	    
 	    <%= f.hidden_field :movie_id %>
 	  </div>
+    <div class="post-button">
     <%= f.submit "Post", class: "btn btn-primary" %>
+    </div>
   <% end %>
 
   </div>
@@ -54,10 +56,10 @@
     <% if @movie.reviews.any? %>
      <%= will_paginate @reviews %>
       <h3>Reviews(<%= @movie.reviews.count %>)</h3>
-      <ol class="list-groups">
+      <ul class="users">
       
         <%= render @reviews %>
-      </ol>
+      </ul>
       <%= will_paginate @reviews %>
     <% end %>
   </div>

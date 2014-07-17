@@ -1,15 +1,21 @@
 <li>
 <% id= review.movie_id %>
 <% @movie= Movie.find_by_id(id) %>
+<div class="row-fluid">
+<div class="span9">
 
-<div class="content"><strong>Movie: </strong><%=  link_to @movie.name , @movie %></div>
- <div  class="content">Review: <%= raw(review.comment) %></div>
+<div class="content"><%=  link_to @movie.name , @movie %></div>
+ <div  class="content"><%= raw(review.comment) %></div>
   <div class="timestamp">
     Posted <%= time_ago_in_words(review.created_at) %> ago.
   </div>
 
-
+</div>
+<div class="span3">
+<div class="right">
    <% if current_user == review.user %>
    <div class="content"> <%= link_to "delete", review_path(review), method: :delete, data: { confirm: "You sure?" }%></div>
   <% end %>
+  </div>
+  </div>
 </li>
