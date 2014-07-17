@@ -11,7 +11,7 @@
       <h4>Opening This Week</h4>
       <ul>
         <% @movies.each do |movie| %>
-         <% if  movie.releasedate > Date.today.beginning_of_week  %>
+         <% if  movie.releasedate > Date.today.beginning_of_week &&  movie.releasedate < Date.today.beginning_of_week+7 %>
             <li>
              <div class="text">
              <%= link_to movie.name, movie %>
@@ -23,15 +23,27 @@
     </div>
     <div class="well">
       <h4> Most Populer Movie </h4>
+      <% u=Hash.new %>
+      <% @movies.each do |movie| %>
+        <% u[movie]=movie.reviews.count %>
+      <% end %>
+      
+    
+      <% temp= u.sort_by {|k,v| v}.reverse %>
+      <% Hash[*temp.flatten] %>
       <ul>
-        <% @movies.each do |movie| %>
-          <% if movie.reviews.count>0 %>
+        
+        <% temp.each do |k,v| %>
+        
+          <% if  v >1 %>
             <li>
-              <%= link_to movie.name, movie %>
+              <%= link_to k.name, k %>
+
             </li>
           <%end %>
         <%end %>
       </ul>
+      
     </div>
   </div>
 </div>

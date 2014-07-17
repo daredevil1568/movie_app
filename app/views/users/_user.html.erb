@@ -1,17 +1,18 @@
 <li class="list-page-item">
-<div class="list">
-<div class="left">
+<div class="row-fluid">
+<div class="span3">
   <%= image_tag user.photo.url(:small) %>
   </div>
-  <div class="right">
-  <div class="text"> <strong> Name:</strong>
-  <%= link_to user.name, user %></div>
+  <div class="span7">
+  <div class="large"> <strong> 
+  <%= link_to user.name, user %></strong></div>
  <div class="text"><strong> Reviews Added</strong> <%= user.reviews.count %></div>
+ </div>
   <% if current_user.admin? && !current_user?(user) %>
-  <div class="text"> <%= link_to "delete", user, method: :delete,
+  <div class="span2"> <%= link_to "delete", user, method: :delete,
                                   data: { confirm: "You sure?" } %></div>
 
   <% end %>
    </div>
-                                  </div>
+                                  
 </li>

@@ -3,12 +3,12 @@ class MoviesController < ApplicationController
 def show
 @movie=Movie.find(params[:id])
 @new_review = @movie.reviews.build
-@reviews=@movie.reviews.paginate(page: params[:page])
+@reviews=@movie.reviews.paginate(page: params[:page], :per_page => 5)
 
 end
 
 def index
-@movies = Movie.paginate(page: params[:page])
+@movies = Movie.paginate(page: params[:page], :per_page => 5)
 end
 
  def new

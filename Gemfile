@@ -12,6 +12,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem "paperclip", '3.5.4'
 gem 'aws-sdk'
 gem 'ckeditor', '4.0.10'
+gem 'omniauth-facebook'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
