@@ -16,7 +16,7 @@
       <div class="well">  
         <h4>Opening This Week</h4>
         <ul>
-          <% @movies.each do |movie| %>
+          <% @moviesall.each do |movie| %>
            <% if  movie.releasedate > Date.today.beginning_of_week &&  movie.releasedate < Date.today.beginning_of_week+7 %>
               <li>
                <div class="text">
@@ -30,7 +30,7 @@
       <div class="well">
         <h4> Most Populer Movie </h4>
         <% u=Hash.new %>
-        <% @movies.each do |movie| %>
+        <% @moviesall.each do |movie| %>
           <% u[movie]=movie.reviews.count %>
         <% end %>
         
