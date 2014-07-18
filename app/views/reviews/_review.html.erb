@@ -1,9 +1,22 @@
-<li>
-  <span class="content"><%= review.comment %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(review.created_at) %> ago.
-  </span>
- 
+<li class="well comments-container" >
+<% id=review.user_id %>
+<% user=User.find_by_id(id) %>
+<div class="row-fluid">
+	<div class="span9">
+		
+		  <div class="content"><%= raw(review.comment) %></div>
+		  
+		   <div> Posted <%= time_ago_in_words(review.created_at) %> ago.
+		    <%= link_to user.name, user %>
 
- 
-</li>
+			  </div>
+		 </div>
+		  <div class="span3 ">
+		  	<div class="right">
+			  <%  signed_in? && if current_user.admin?%>
+			    <%= link_to "delete", review_path(review), method: :delete, data: { confirm: "You sure?" }%>
+			   <% end %>
+		   </div>
+	   </div>
+   </div>
+ </li>

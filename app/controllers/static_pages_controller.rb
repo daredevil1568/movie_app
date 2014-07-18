@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-  	@movies = Movie.paginate(page: params[:page])
+  	@movies = Movie.paginate(page: params[:page], :per_page => 5)
   end
 
   def help

@@ -1,18 +1,27 @@
 <% provide(:title, @user.name) %>
-<div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= gravatar_for @user %>
-        <%= @user.name %>
-      </h1>
-    </section>
-  </aside>
-  <span>
-  <div class="span8">
+<div class="row-fluid">
+  <div class="span4"> 
+      
+        <%= image_tag @user.photo.url(:small) %>
+        
+    </div>
+    <div class="span8">
+    <div class="span8">
+       <div class="large"> <strong><%= link_to @user.name %></strong></div>
+       </div>
+       <div class="span4">
+        <strong> Total Review: <%= @user.reviews.count %></strong>
+        </div>
+      
+  
+  </div>
+  </div>
+ 
+  <div class="users ">
     <% if @user.reviews.any? %>
       <h3>Reviews(<%= @user.reviews.count %>)</h3>
-      <ol class="microposts">
+       <%= will_paginate @reviews %>
+      <ol class="users">
         <%= render partial: 'shared/user_review', collection: @reviews, :as => :review %>
       </ol>
       <%= will_paginate @reviews %>
@@ -21,5 +30,3 @@
 
 
 
-</span>
-</div>

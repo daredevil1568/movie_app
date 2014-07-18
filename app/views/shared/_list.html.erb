@@ -1,20 +1,31 @@
 
-
-<%= will_paginate @movies %>
-
 <ul class="users">
   <% @movies.each do |movie| %>
-    <li>
-      <%= gravatar1_for movie, size: 52 %>
-     Name:  <%= link_to movie.name, movie %>
+    <li class="list-group-item">
+      <div class="span3">
+        <%=  image_tag movie.photo.url(:small) %>
+      </div>
+      <div class="span7">
+        <div class="large">
+          <strong><%= link_to movie.name, movie %></strong>
+        </div>
+        <div >
+          <strong>Director: </strong><%= movie.director %>
+        </div>
+        <div>
+          <strong> Review:</strong> <%= movie.reviews.count %>
+        </div>
+      </div>
+      <div class="span2">
+        <% if signed_in? %>
+          <%= link_to " Add Review", movie %>
+        <% end %>
 
-      Director: <%= movie.director %>
-      Writers: <%=movie.writers %>
-      <br/>
-      Stars: <%= movie.stars %>
-      <br/>
-     <%= link_to " Add Review", movie %>
+        <%  signed_in? && if current_user.admin?%>
+          <%= link_to "Delete", movie, method: :delete,data: { confirm: "You sure?" } %>
+        <% end %>
+      </div>
     </li>
   <% end %>
-  <%= will_paginate @movies %>
 </ul>
+

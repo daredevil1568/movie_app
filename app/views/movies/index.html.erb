@@ -5,9 +5,21 @@
 
 <ul class="users">
   <% @movies.each do |movie| %>
-    <li>
-      <%= gravatar1_for movie, size: 52 %>
-      <%= link_to movie.name, movie %>
+    <li class="list-group-item">
+    <div class="list">
+    <div class="left">
+     <%= image_tag movie.photo.url(:small) %>
+     </div>
+     <div class="right">
+     <div class="text"> <%= link_to movie.name, movie %></div>
+     <div class="text"> Review: <%= movie.reviews.count %></div>
+
+       <%  signed_in? && if current_user.admin?%>
+  <div class="text"> <%= link_to "delete", movie, method: :delete,
+                                  data: { confirm: "You sure?" } %></div>
+  <% end %>
+  </div>
+  </div>
     </li>
   <% end %>
 </ul>

@@ -194,3 +194,67 @@ input {
     }
   }
 }
+t.list
+{
+
+}
+.left
+{
+	width:20%;
+	float:left;
+}
+.right
+{
+	color:black;
+	
+	float:left;
+	margin-left:40px;
+}
+.skedito
+{
+	
+	float:bottom;
+}
+.h3
+{
+	text-align:center;
+}
+.large
+{
+	
+	font-size:18px;
+}
+
+.datetime select:nth-child(1){
+  width: 130px;
+  text-indent: 15px; 
+  height:40px;
+}
+
+.datetime select:nth-child(2) {
+  width: 200px;
+  text-indent: 5px;
+  height:40px;
+}
+
+.datetime select:nth-child(3) {
+  width: 110px;
+  text-indent: 15px;
+  height:40px;
+}
+.post-button
+{
+	
+	padding-top:10px;
+}
+.users .comments-container
+{	
+
+
+	padding:10px;
+}
+.comments-container .right
+{
+	
+	float:right;
+}

@@ -1,16 +1,56 @@
-<div class="center hero-unit">
+<div class="row">
   <h1>Welcome to A2ZFILM</h1>
-
-  <div class="row">
-    
-     <div class="span8">
-      <h3>Movies To Review</h3>
-      
-      <%= render 'shared/list' %>
-    </div>
-  </div> 
-
-
 </div>
+<div class="row-fluid">
+  
+    <div class="span8 ">
+      
+      <div class="well">
+        
+        <%= render 'shared/list' %>
 
+      </div>
+      <%= will_paginate @movies %>
+    </div>
+    <div class="span4">
+      <div class="well">  
+        <h4>Opening This Week</h4>
+        <ul>
+          <% @movies.each do |movie| %>
+           <% if  movie.releasedate > Date.today.beginning_of_week &&  movie.releasedate < Date.today.beginning_of_week+7 %>
+              <li>
+               <div class="text">
+               <%= link_to movie.name, movie %>
+               </div>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+      <div class="well">
+        <h4> Most Populer Movie </h4>
+        <% u=Hash.new %>
+        <% @movies.each do |movie| %>
+          <% u[movie]=movie.reviews.count %>
+        <% end %>
+        
+      
+        <% temp= u.sort_by {|k,v| v}.reverse %>
+        <% Hash[*temp.flatten] %>
+        <ul>
+          
+          <% temp.each do |k,v| %>
+          
+            <% if  v >1 %>
+              <li>
+                <%= link_to k.name, k %>
 
+              </li>
+            <%end %>
+          <%end %>
+        </ul>
+        
+      </div>
+    </div>
+ 
+</div>

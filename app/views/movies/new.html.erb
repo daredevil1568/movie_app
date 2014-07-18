@@ -2,9 +2,8 @@
 <h1>Add New Movie</h1>
 
 <div class="row">
-  <div class="span6 offset3">
-    <%= form_for(@movie) do |f| %>
-     
+  <div class="span6 offset3 well">
+   <%= form_for @movie, :html =>{ :multipart => true } do |f| %>
       <%= render 'shared/movieerror' %>
       <%= f.label :name %>
       <%= f.text_field :name %>
@@ -15,9 +14,17 @@
       <%= f.label :stars %>
       <%= f.text_field :stars %>
       <%= f.label :description %>
-      <%= f.text_field :content %>
+      <%= f.cktext_area :content, rows: 10 %>
+      <%= f.label :releasedate,"Release Date" %>
+      <span class="datetime">
+        <%= f.date_select :releasedate %>
+      </span>
+      <%= f.label :photo, "Add Poster" %>
+      <%= f.file_field :photo ,class: "btn btn-small btn-primary " %>
 
-      <%= f.submit "Add For Review", class: "btn btn-large btn-primary" %>
+      
+      <br/>
+      <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
     <% end %>
 
   </div>

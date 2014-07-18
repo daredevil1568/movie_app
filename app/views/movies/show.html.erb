@@ -1,38 +1,65 @@
 <% provide(:title, @movie.name) %>
 <div class="row">
-  <div class="span6 offset3">
-    
-      
-        <%= gravatar1_for @movie %>
-        Name: <%= @movie.name %>
+<div class="span2">
+<%= image_tag @movie.photo.url(:small) %>
+</div>
+<div class="span10">
+<table class="table">
+ <tr>
+ 		<td><strong>Name: </strong></td>
+ 		<td><%= @movie.name %></td>
+       </tr>
+       <tr>
+       <td><strong>Director: </strong></td>
+       <td><%= @movie.director %></td>
+       </tr>
+       <tr>
+       <td><strong>Writers: </strong></td>
+       <td><%= @movie.writers %></td>
+       </tr>
+       <tr>
+       <td><strong>Stars: </strong></td>
+       <td><%= @movie.stars %></td>
+       </tr>
+       <tr>
+       <td><strong>Description:</strong></td>
+       <td> <%= raw(@movie.content )%></td>
+       </tr>
 
-      <br/>
-       Director: <%= @movie.director %>
-       <br/>
-       Writers: <%= @movie.writers %>
-       <br/>
-       Stars: <%= @movie.stars %><br/>
-       Description: <%= @movie.content %><br/>
-
-    
-  </div>
-<div class="row">
-  <div class="span6 offset3">
+       <tr>
+       <td><strong>Release Date:</strong></td>
+       <td> <%= @movie.releasedate.strftime("%d-%m-%Y") %></td>
+       </tr></table>
+</div>
+    </div>
+  <div class="row">
+    <% if signed_in? %>
+ <h3 class="h3"> Add Review </h3>
+  <div class="form-group">
     <%= form_for(@new_review) do |f| %>
 	  <div class="field">
-	    <%= f.text_area :comment, placeholder: "Compose new micropost..." %>
+	  <%= f.cktext_area :comment, rows: 20, placeholder: "Write Review..." %>
+	    
 	    <%= f.hidden_field :movie_id %>
 	  </div>
-    <%= f.submit "Post", class: "btn btn-large btn-primary" %>
+    <div class="post-button">
+    <%= f.submit "Post", class: "btn btn-primary" %>
+    </div>
   <% end %>
 
   </div>
-  <div class="span8">
+
+  <% end %>
+</div>
+
+  <div class="row">
     <% if @movie.reviews.any? %>
+     <%= will_paginate @reviews %>
       <h3>Reviews(<%= @movie.reviews.count %>)</h3>
-      <ol class="microposts">
+      <ul class="users">
+      
         <%= render @reviews %>
-      </ol>
+      </ul>
       <%= will_paginate @reviews %>
     <% end %>
   </div>

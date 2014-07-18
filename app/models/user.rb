@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation, :photo
   has_secure_password
 
   before_save { |user| user.email = email.downcase }
@@ -13,6 +13,17 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   has_many :reviews
+
+  has_attached_file :photo, :styles => { :small => "150x150>" },
+                  :url  => "/assets/users/:id/:style/:basename.:extension",
+                  :path => ":rails_root/public/assets/users/:id/:style/:basename.:extension",
+                  :default_url => ActionController::Base.helpers.asset_path('missing.jpeg')
+
+validates_attachment_presence :photo
+validates_attachment_size :photo, :less_than => 5.megabytes
+validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+
+
 
   private
 

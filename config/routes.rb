@@ -1,4 +1,6 @@
 MovieApp::Application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
+
   resources :users
   resources :sessions,only:[:new, :create, :destroy]
   resources :movies
